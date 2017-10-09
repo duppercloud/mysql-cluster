@@ -1,0 +1,11 @@
+FROM ubuntu:16.04
+
+RUN apt-get update -y && \
+apt-get install -y wget && \
+cd tmp && wget https://dev.mysql.com/get/Downloads/MySQL-Cluster-7.4/mysql-cluster-gpl-7.4.16-debian7-x86_64.deb && \
+dpkg -i mysql-cluster-gpl-7.4.16-debian7-x86_64.deb && \
+mkdir -p /usr/local/mysql/data && \
+mkdir -p /var/lib/mysql-cluster 
+
+
+CMD ["/opt/mysql/server-5.6/bin/ndbd", "--foreground", "--initial"]
